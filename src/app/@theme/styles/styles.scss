@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Raleway:400,600,800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
 
 // themes - our custom or/and out of the box themes
 @import 'themes';
@@ -6,11 +6,17 @@
 // framework component themes (styles tied to theme variables)
 @import '~@nebular/theme/styles/globals';
 @import '~@nebular/auth/styles/all';
-@import '~@nebular/bootstrap/styles/globals';
 
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
 
 // loading progress bar theme
 @import './pace.theme';
+
+@import './layout';
+@import './overrides';
 
 // install the framework and custom global styles
 @include nb-install() {
@@ -18,25 +24,10 @@
   // framework global styles
   @include nb-theme-global();
   @include nb-auth-global();
-  @include nb-bootstrap-global();
 
+  @include ngx-layout();
   // loading progress bar
   @include ngx-pace-theme();
+
+  @include nb-overrides();
 };
-
-// overrides bootstrap svg style
-nb-icon svg {
-  vertical-align: top;
-}
-
-nb-auth-block .links nb-icon {
-  font-size: 2.5rem;
-}
-
-nb-select.size-medium button {
-  padding: 0.4375rem 2.2rem 0.4375rem 1.125rem !important;
-
-  nb-icon {
-    right: 0.41rem !important;
-  }
-}
